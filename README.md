@@ -14,4 +14,4 @@ Recognition of captured images of movies using web cameras
 python main.py
 ```
 だけ
-<img src="img/execflow.pdf" alt="実行フロー" />
+<img src="img/execflow.pdf"/>
