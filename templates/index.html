@@ -68,7 +68,7 @@
             console.error("getUserMedia error: ", error.code);
         });
         btnCapture.addEventListener("click", function () {
-            try { localMediaStream.stop() } catch (e) { console.log(e) }
+            try { localMediaStream.stop() } catch (e) { console.log(e) } //localMediaStream.stop()が効くかどうかブラウザによる
             var img = context.drawImage(video, 0, 0, canvas.width, canvas.height);
             send_img(canvas);
         });

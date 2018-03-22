@@ -27,7 +27,7 @@ def list_FIFO(array,append_element):#要するにキューの実装。array.pop(
         temp_array = copy.deepcopy(array[-4:])
     else:
         temp_array = copy.deepcopy(array)
-    del array #メモリを解放（できてんのか？）
+    del array #メモリを解放（←できてんのか？）
     temp_array.append(append_element) #キューに追加
     return temp_array
 
@@ -35,6 +35,7 @@ def list_FIFO(array,append_element):#要するにキューの実装。array.pop(
 def index():
     return render_template('index.html')
 
+#/image_classifyでは"画像受け取る→グローバル変数を更新→変換してVGGに投げる→ニューラルネット→結果を円グラフ用に整形してグローバル変数を更新"の流れ
 @app.route('/image_classify', methods=['POST'])
 def image_classify():
     if request.method == 'POST':
@@ -71,7 +72,7 @@ def image_classify():
         current_image_classify_result = label_Prob_Json
         global image_classify_result_list
         image_classify_result_list = list_FIFO(image_classify_result_list, current_image_classify_result)
-        return render_template('index.html') #返り値は必ず必要、なかったら怒られる
+        return render_template('index.html') #返り値は必ず必要、なかったら怒られる ここでrender_template('result.html')したいけど
 
 @app.route('/result')
 def result():
@@ -80,7 +81,6 @@ def result():
 @app.route('/history')
 def history():
     history_image_result_json = {'result':image_classify_result_list, 'data':image_jpeg_base64_list, 'date':timestamp_list}
-    print(timestamp_list)
     return render_template('history.html',history_image_result_json=history_image_result_json)
 
 @app.errorhandler(404)
