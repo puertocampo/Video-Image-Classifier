@@ -22,14 +22,14 @@ image_classify_result_list = []
 image_jpeg_base64_list = []
 timestamp_list = []
 
-def list_FIFO(array,append_element):
+def list_FIFO(array,append_element):#要するにキューの実装。array.pop(0)を使ってたらなぜかメモリ不足になったので・・・。
     if len(array)>=5:
-        temp_array_1to4 = copy.deepcopy(array[-4:])
+        temp_array = copy.deepcopy(array[-4:])
     else:
-        temp_array_1to4 = copy.deepcopy(array)
+        temp_array = copy.deepcopy(array)
     del array #メモリを解放（できてんのか？）
-    temp_array_1to4.append(append_element) #キューに追加
-    return temp_array_1to4
+    temp_array.append(append_element) #キューに追加
+    return temp_array
 
 @app.route('/')
 def index():
@@ -71,7 +71,7 @@ def image_classify():
         current_image_classify_result = label_Prob_Json
         global image_classify_result_list
         image_classify_result_list = list_FIFO(image_classify_result_list, current_image_classify_result)
-        return render_template('index.html') #返り値は必ず必要
+        return render_template('index.html') #返り値は必ず必要、なかったら怒られる
 
 @app.route('/result')
 def result():
