@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta charset="utf-8">
+    <title>Video Image Classifier</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/main.css" />
+</head>
+
+<body style='padding-top:0px'>
+    <header>
+        <div class="siimple-navbar siimple-navbar--teal siimple-navbar--fluid" style='width:100%;'>
+            <div class="siimple-layout--left">
+                <a class="siimple-navbar-title" href='/'>Video Image Classifier</a>
+            </div>
+            <div class="siimple-layout--right">
+                <a class="siimple-navbar-link" href='/'>Home</a>
+                <a class="siimple-navbar-link" href='history'>History</a>
+            </div>
+        </div>
+    </header>
+    <div style="text-align:center; padding-top:30px;">
+        <div class="siimple-h1" style='font-size:60px;'>RESULT</div>
+        <img src='{{image_raw_data}}' style='width:520px; height:390px;' />
+        <canvas id="Circle_Chart" style='width:520px; height:390px;'></canvas>
+    </div>
+    <div style='text-align:center; padding-top:30px;'>
+        <button id="back" class="siimple-btn siimple-btn--teal" style='height:50px; width:150px; font-size:20px;'>Try Again</button>
+    </div>
+</body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple@3.0.0/dist/siimple.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+    //window.URLのAPIをすべてwindow.URLに統一
+    window.URL = window.URL || window.webkitURL;
+
+    var btnBack = document.getElementById("back");
+    btnBack.addEventListener("click", function () {
+        location.href = '/'
+    });
+
+    var pieData = JSON.parse('{{label_Prob_Dict | tojson | safe}}');
+
+    window.onload = function () {
+        var ctx = document.getElementById("Circle_Chart").getContext("2d");
+        var options = {
+            legend: {
+                labels: {
+                    // このフォントプロパティ指定は、グローバルプロパティを上書きします
+                    fontSize: 300,//円グラフラベルのフォントサイズを書き換えたつもりがなぜか反映されない
+                }
+            }
+        };
+        window.myPie = new Chart(ctx).Pie(pieData, {
+            onAnimationComplete: function () {
+                this.showTooltip(this.segments, true);
+            },
+            tooltipEvents: [],
+            showTooltips: true,
+            options: options,
+        })
+    };
+
+</script>
+
+</html>

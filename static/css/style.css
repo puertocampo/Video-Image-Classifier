@@ -1,0 +1,41 @@
+* {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #gray;
+        font: sans-serif;
+    }
+
+    video {
+        /*width: 320px;
+        height: 240px;*/
+        width: 520px;
+        height: 390px;
+    }
+
+    button {
+        width: 160px;
+        height: 60px;
+        font-size: 20px;
+        text-align: center;
+        vertical-align: center;
+    }
+
+    canvas {
+        width: 640px;
+        height: 480px;
+    }
+
+/*
+    img {
+        width: 640px;
+        height: 480px;
+    }
+*/
+
+    .img_history {
+        width: 400px;
+        height: 300px;
+    }
