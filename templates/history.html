@@ -21,11 +21,11 @@
         </div>
     </header>
     <div class="siimple-h1" style='text-align:center;font-size:60px;'>HISTORY</div>
-    <article>
+    <article><!--以下の繰り返しはjinjaでスマートにかけそう-->
         {% if history_image_result_json.data[4] %}
         <div style='text-align:center; padding-top:20px'>
             <h1 style='margin-bottom:5px;'>{{history_image_result_json.date[4]}}</h1>
-            <img class='img_history' src='{{history_image_result_json.data[4]}}' style='width:440px; height:330px;' />
+            <img class='img_history' src='{{history_image_result_json.data[4]}}' style='width:440px; height:330px;' /><!--srcの中身に''をつけないとエラーでるので気をつけて-->
             <canvas class='chart_history' id="Circle_Chart_4" style='width:440px; height:330px;'></canvas>
         </div>
         {% endif %} {% if history_image_result_json.data[3] %}
@@ -76,9 +76,9 @@
     });
 
     //過去5回分の履歴をJsonにデコード
-    var history_image_result_json = JSON.parse('{{history_image_result_json | tojson | safe}}');
+    var history_image_result_json = JSON.parse('{{history_image_result_json | tojson | safe}}');//これ大事。
 
-    window.onload = function () {
+    window.onload = function () {//考えるのめんどいから円グラフ四つ書いたけど多分他に書き方ある
         if (history_image_result_json.result[0]) {
             var ctx_0 = document.getElementById("Circle_Chart_0").getContext("2d");
             window.myPie = new Chart(ctx_0).Pie(history_image_result_json.result[0], {
