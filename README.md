@@ -2,6 +2,7 @@
 Recognition of captured images of movies using web cameras
 
 ## 環境
+* Python 3.5.2
 * Flask 0.12.2
 * Keras 2.1.5
 * numpy 1.14.2
@@ -14,4 +15,4 @@ Recognition of captured images of movies using web cameras
 python main.py
 ```
 だけ
-<img src="img/execflow.pdf"/>
+<img src="img/execflow.jpg"/>
