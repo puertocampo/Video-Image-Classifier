@@ -14,5 +14,14 @@ Recognition of captured images of movies using web cameras
 ```
 python main.py
 ```
-だけ
+を実行し，デプロイ先が
+(i)ローカルの場合
+```
+localhost:8080
+```
+(ii)リモートの場合
+```
+(グローバルIP):8080
+```
+にアクセス（ポート番号はコード内で変更可）
 <img src="img/execflow.jpeg"/>
